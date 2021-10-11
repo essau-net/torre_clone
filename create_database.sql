@@ -1,0 +1,146 @@
+DROP DATABASE IF EXISTS torre_clone;
+
+CREATE DATABASE torre_clone;
+
+USE torre_clone;
+
+CREATE TABLE IF NOT EXISTS users (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(255) NOT NULL,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(155) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    professional_role VARCHAR(255),
+    cellphone_number  VARCHAR(13) UNIQUE,
+    language VARCHAR(2),
+    is_staff BOOLEAN NOT NULL DEFAULT FALSE,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    is_superuser BOOLEAN NOT NULL DEFAULT FALSE,
+    last_login TIMESTAMP,
+    date_joined TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+        ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS skills (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    skill_name VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS awards (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    award_name VARCHAR(255) NOT NULL,
+    is_current BOOLEAN NOT NULL DEFAULT FALSE,
+    started_at DATE NOT NULL,
+    finished_at DATE
+);
+
+CREATE TABLE IF NOT EXISTS projects (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    project_name VARCHAR(120) NOT NULL,
+    is_current BOOLEAN NOT NULL DEFAULT FALSE,
+    started_at DATE NOT NULL,
+    finished_at DATE
+);
+
+CREATE TABLE IF NOT EXISTS schools (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    school_name VARCHAR(120) NOT NULL,
+    is_current BOOLEAN NOT NULL DEFAULT FALSE,
+    started_at BOOLEAN NOT NULL DEFAULT FALSE,
+    finished_at DATE
+);
+
+CREATE TABLE IF NOT EXISTS genomes(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT  NOT NULL,
+    about VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS skills_genoms (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    skill_id BIGINT NOT NULL,
+    genome_id BIGINT NOT NULL,
+    skill_level  ENUM('Junior', 'Mid-level', 'Senior', 'Influencer') NOT NULL,
+    FOREIGN KEY (skill_id) REFERENCES skills(id)
+        ON UPDATE RESTRICT
+        ON DELETE RESTRICT,
+    FOREIGN KEY (genome_id) REFERENCES genomes(id)
+        ON UPDATE RESTRICT
+        ON DELETE RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTs genomes_schools(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    genome_id BIGINT  NOT NULL,
+    school_id BIGINT NOT NULL,
+    FOREIGN KEY (genome_id) REFERENCES genomes(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT,
+    FOREIGN KEY (school_id) REFERENCES schools(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS genomes_projects(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    genome_id BIGINT  NOT NULL,
+    project_id BIGINT NOT NULL,
+    FOREIGN KEY (genome_id) REFERENCES genomes(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT,
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS genomes_awards(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    genome_id BIGINT  NOT NULL,
+    award_id BIGINT NOT NULL,
+    FOREIGN KEY (genome_id) REFERENCES genomes(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT,
+    FOREIGN KEY (award_id) REFERENCES awards(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS skills_schools(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    skill_id BIGINT  NOT NULL,
+    school_id BIGINT NOT NULL,
+    FOREIGN KEY (skill_id) REFERENCES skills(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT,
+    FOREIGN KEY (school_id) REFERENCES schools(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS skills_projects(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    skill_id BIGINT  NOT NULL,
+    project_id BIGINT NOT NULL,
+    FOREIGN KEY (skill_id) REFERENCES skills(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT,
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS skills_awards(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    skill_id BIGINT  NOT NULL,
+    award_id BIGINT NOT NULL,
+    FOREIGN KEY (skill_id) REFERENCES skills(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT,
+    FOREIGN KEY (award_id) REFERENCES awards(id)
+        ON UPDATE RESTRICT
+        ON DELETE  RESTRICT
+);
