@@ -13,9 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+#Utilities
+from collections.abc import Callable
+from typing import List, Any
+#Dajngo
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-urlpatterns = [
+urlpatterns: List[Any]= [
     path('admin/', admin.site.urls),
+
+    path('', include(('posts.urls', 'posts'), namespace='user')),
+    path('genome/', include(('genomes.url', 'genomes'), namespace='genome'))
 ]

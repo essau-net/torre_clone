@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+#utilities
+from os import environ
 from pathlib import Path
+from typing import List, Dict, Tuple, Any, Union, Optional
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,26 +22,36 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-t15k&xlq&-+q2^+wu6%i8vobu_u9tu&4kd(za9*bf1rwm168*n'
+SECRET_KEY: Optional[str] = environ.get('SECRET_KEY_TORRE')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG: bool = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS: List = []
 
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS: Tuple[str, ...] = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+)
 
-MIDDLEWARE = [
+LOCAL_APPS: Tuple[str, ...]= (
+    'awards',
+    'genomes',
+    'meta_data',
+    'skills',
+    'users',
+)
+
+INSTALLED_APPS = list(DJANGO_APPS + LOCAL_APPS)
+
+MIDDLEWARE: List[str] = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,9 +61,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'torre_clone.urls'
+ROOT_URLCONF: str = 'torre_clone.urls'
 
-TEMPLATES = [
+TEMPLATES: List[Dict[str, Any]] = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
@@ -67,16 +79,20 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'torre_clone.wsgi.application'
+WSGI_APPLICATION: str = 'torre_clone.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
+DATABASES: Dict[str, Dict[str, Optional[Union[Path, str]]]] = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': environ.get('DB_ENGINE_TORRE'),
+        'NAME': environ.get('DB_NAME_TORRE'),
+        'USER': environ.get('DB_USER_TORRE'),
+        'PASSWORD': environ.get('DB_PASS_TORRE'),
+        'HOST': environ.get('DB_HOST_TORRE'),
+        'PORT': environ.get('DB_PORT_MYSQL'),
     }
 }
 
@@ -84,7 +100,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
+AUTH_PASSWORD_VALIDATORS: List[Dict[str, str]] = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
@@ -103,23 +119,29 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE: str = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE: str = 'UTC'
 
-USE_I18N = True
+USE_I18N: bool = True
 
-USE_L10N = True
+USE_L10N: bool = True
 
-USE_TZ = True
+USE_TZ: bool = True
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL: str = '/static/'
+
+LOGIN_URL: str = 'users:login'
+LOGIN_REDIRECT_URL:  str = '/'
+LOGOUT_REDIRECT_URL: str = LOGIN_URL
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD: str = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'
