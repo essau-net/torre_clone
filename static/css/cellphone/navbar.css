@@ -1,0 +1,84 @@
+.nav-header,
+.nav-footer {
+    align-items: center;
+    color: var(--second-complementary-color);
+    display: flex;
+    flex-direction: row;
+    height: 80px;
+    width: 100%;
+}
+.nav-header li,
+.nav-footer li {
+    list-style: none;
+}
+
+.nav-header-container,
+.nav-footer-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+}
+
+.nav-footer .nav-footer-container {
+    justify-content: space-evenly;
+    margin-right: 30px;
+}
+
+.nav-header-container li:first-child {
+    background-image: url(../../media/menu.png);
+    background-repeat: no-repeat;
+    background-position: inherit;
+    background-size: contain;
+    margin-left: 20px;
+    width: 26px;
+}
+
+.nav-header-container li:last-child {
+    font-size: 3rem;
+    font-style: bold;
+    margin-left: 20px;
+}
+
+.nav-footer-container li{
+    background-repeat: no-repeat;
+    background-position: inherit;
+    background-size: contain;
+    height: 30px;
+    margin-left: 20px;
+    width: 30px;
+}
+
+.nav-footer-container li:first-child {
+    background-image: url(../../media/compass.png);
+}
+
+.nav-footer-container li:nth-child(2) {
+    background-image: url(../../media/megaphone.png);
+}
+
+.nav-footer-container li:nth-child(3) {
+    background-image: url(../../media/case.png);
+}
+
+.nav-footer-container li:nth-child(4) {
+    background-image: url(../../media/preferences.png);
+}
+
+.nav-footer-container li:nth-child(5) {
+    background-image: url(../../media/perfil.png);
+}
+
+.nav-footer-container li:nth-child(6) {
+    background-image: url(../../media/raise_hand.png);
+}
+
+.nav-footer-container li:nth-child(7) {
+    background-image: url(../../media/message.png);
+}
+
+.nav-footer-container li:nth-child(8){
+    background-image: url();
+}

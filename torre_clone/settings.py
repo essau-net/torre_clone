@@ -135,6 +135,15 @@ USE_TZ: bool = True
 
 STATIC_URL: str = '/static/'
 
+STATIC_FINDERS: List[str] = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
+STATICFILES_DIRS = (
+    'static',
+)
+
 LOGIN_URL: str = 'users:login'
 LOGIN_REDIRECT_URL:  str = '/'
 LOGOUT_REDIRECT_URL: str = LOGIN_URL

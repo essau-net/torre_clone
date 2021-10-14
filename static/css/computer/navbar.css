@@ -1,0 +1,41 @@
+
+html .container {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: auto;
+}
+
+
+.container .header {
+    order: 1;
+    width: 50%;
+    height: 100%;
+    
+}
+.container .main {
+    order :2;
+    flex-grow: 0;
+}
+.container .footer {
+    order: 1;
+    width: 50%;
+    height: 100%;
+}
+
+
+
+
+.nav-header-left,
+.nav-footer-container {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+
+
+

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head_content %}
+<link media="(min-width: 1440px)" rel="stylesheet" href="{% static 'css/computer/forms.css' %}">
+<link rel="stylesheet" href="{% static 'css/cellphone/forms.css' %}">
+{% endblock %}
+
+{% block container %}
+    <form action="">
+        {% csrf_token  %}
+
+        <label for="username" class="username-container">
+            <span class="username-container__element">Username</span>
+            <input type="text" id="username" class="username-container__element">
+        </label>
+
+        <label for="password" class="password-container">
+            <span class="password-container__element">Password</span>
+            <input type="password" id="password" class="password-container__element">
+        </label>
+
+        <p>
+            You haven't created an account yet. <a href="">Sign up</a>
+        </p>
+    </form>
+{% endblock %}

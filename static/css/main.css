@@ -1,0 +1,60 @@
+:root{
+    --primary-color: #27292D;
+    --complementary-color: #8BC34A;
+    --second-complementary-color: #B3B4B5;
+    --third-complementary-color: #CDDC39;
+
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: var(--primary-color);
+    color: var(--complementary-color);
+    font-size: 62.5%;
+}
+
+html * {
+    font-size: 1.8rem;
+}
+
+a, a:visited, a:hover, a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header,
+.main,
+.footer {
+    width: 100%;
+}
+
+.header,
+.footer {
+    flex-shrink: 0;
+}
+
+.header {
+    order: 1;
+}
+
+.main {
+    flex-grow: 1;
+    order: 1;
+}
+
+.footer {
+    margin-bottom: 15px;
+    order: 3;
+}
+

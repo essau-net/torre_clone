@@ -23,6 +23,6 @@ from django.urls import path, include
 urlpatterns: List[Any]= [
     path('admin/', admin.site.urls),
 
-    path('', include(('posts.urls', 'posts'), namespace='user')),
-    path('genome/', include(('genomes.url', 'genomes'), namespace='genome'))
+    path('', include(('users.urls', 'users'), namespace='user')),
+    path('genome/', include(('genomes.urls', 'genomes'), namespace='genome'))
 ]

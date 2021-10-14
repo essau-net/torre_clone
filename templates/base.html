@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>torre</title>
+
+    {% load static %}
+
+    <link media=""rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+    <link media="(min-width:1440px)" rel="stylesheet" type="text/css" href="{% static 'css/computer/navbar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cellphone/navbar.css' %}">
+    
+    {% block head_content %}
+    {% endblock %}
+    
+
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            {% include "nav.html" %}
+        </header>
+        <main class="main">
+            {% block container %}
+            {% endblock %}
+        </main>
+        <footer class="footer">
+            {% include "footer.html" %}
+        </footer>
+    
+    </div>
+    
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+</html>
