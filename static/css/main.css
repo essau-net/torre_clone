@@ -1,5 +1,6 @@
 :root{
-    --primary-color: #27292D;
+    --primary-background-color: #27292D;
+    --second-background-color: #383B40;
     --complementary-color: #8BC34A;
     --second-complementary-color: #B3B4B5;
     --third-complementary-color: #CDDC39;
@@ -13,7 +14,7 @@
 }
 
 html {
-    background-color: var(--primary-color);
+    background-color: var(--primary-background-color);
     color: var(--complementary-color);
     font-size: 62.5%;
 }
@@ -42,6 +43,7 @@ a, a:visited, a:hover, a:active {
 .header,
 .footer {
     flex-shrink: 0;
+    background-color: var(--second-background-color);
 }
 
 .header {
@@ -51,6 +53,8 @@ a, a:visited, a:hover, a:active {
 .main {
     flex-grow: 1;
     order: 1;
+    display: flex;
+    justify-content: center;
 }
 
 .footer {

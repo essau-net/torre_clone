@@ -7,21 +7,23 @@
 {% endblock %}
 
 {% block container %}
-    <form action="">
-        {% csrf_token  %}
-
-        <label for="username" class="username-container">
-            <span class="username-container__element">Username</span>
-            <input type="text" id="username" class="username-container__element">
-        </label>
-
-        <label for="password" class="password-container">
-            <span class="password-container__element">Password</span>
-            <input type="password" id="password" class="password-container__element">
-        </label>
-
-        <p>
-            You haven't created an account yet. <a href="">Sign up</a>
-        </p>
-    </form>
+    <div class="form">
+        <form action=""  class="form-login-container">
+            {% csrf_token  %}
+    
+            <label for="username" class="field username-container">
+                <span class="username-container__element">Username</span>
+                <input type="text" id="username" class="username-container__element">
+            </label>
+    
+            <label for="password" class="field password-container">
+                <span class="password-container__element">Password</span>
+                <input type="password" id="password" class="password-container__element">
+            </label>
+            <button>Submit</button>
+            <p>
+                You haven't created an account yet. <a href="">Sign up</a>
+            </p>
+        </form>
+    </div>
 {% endblock %}
