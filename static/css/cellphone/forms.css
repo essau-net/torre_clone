@@ -1,11 +1,23 @@
+/*GENERAL form */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  -webkit-box-shadow: 0 0 0 30px var(--second-background-color) inset;
+  -webkit-text-fill-color: var(--second-complementary-color) !important;
+}
+
+
 .form {
-    align-items: center;
     background-color: var(--second-background-color);
-    color: var(--second-complementary-color);
     display: flex;
     flex-direction: column;
-    height: 50vh;
     justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    color: var(--second-complementary-color);
     width: 100%;
     border-top: var(--second-complementary-color) solid 1px;
 }
@@ -13,41 +25,77 @@
 .field {
     display: flex;
     flex-direction: column;
-    
-
 }
 
 .field span{
     font-size: 2.5rem;
 }
 
-.form-login-container * {
+.form * {
     margin: 8px 0;
 }
 
-.form-login-container{
-    width: 85%;
-}
-
-.form-login-container input {
-    background-color: var(--second-background-color);
-    height: 30px;
-    border-radius: 10px;
-    border: var(--second-complementary-color) solid 1px;
-}
-
-.form-login-container button {
+.form button {
     background-color: var(--third-complementary-color);
     padding: 8px 10px;
     border-radius: 12px;
     border: var(--primary-background-color) 2px solid;
 }
 
-.form-login-container a{
+.form .field {
+    width: 80%;
+}
+
+.form input {
+    background-color: var(--second-background-color);
+    height: 30px;
+    border-radius: 10px;
+    border: var(--second-complementary-color) solid 1px;
+    color: var(--second-complementary-color);
+}
+
+.form .submit-button{
+    display: flex;
+    justify-content: flex-end;  
+    width: 75%;
+}
+
+
+.form input:active{
+    border: var(--third-complementary-color) 2px solid;
+}
+
+
+
+/*LOGIN form*/
+
+.form-login a{
     color: var(--third-complementary-color);
     text-decoration: underline;
 }
 
-.form-login-container a:hover {
+.form-login a:hover {
     cursor: pointer;
+}
+
+.form-login p {
+    width: 90%;
+}
+
+/*GENERAL error*/
+.field-error{
+    color: var(--color-font-error);
+}
+.field-error input,
+.field-error textarea {
+    border-color: var(--border-color-error-input);
+}
+
+.field-error p {
+    background-color: var(--background-color-error-info);
+    border-radius: 6px;
+    font-size: 1.3rem;
+    margin-top: 4px;
+    padding: 3px 15px;
+    text-align: left;
 }

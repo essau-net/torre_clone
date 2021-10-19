@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
     first_name VARCHAR(255) NOT NULL,
     last_name VARCHAR(155) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL UNIQUE,
     professional_role VARCHAR(255),
     cellphone_number  VARCHAR(13) UNIQUE,
     language VARCHAR(2),

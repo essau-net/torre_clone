@@ -10,8 +10,26 @@ from users import views
 
 urlpatterns: List[Any] = [
     path(
+        route='user/',
+        view=views.AccountInformation.as_view(),
+        name='information'
+    ),
+    
+    # path(
+    #     route='/user/update',
+    #     view=views.UpdateView.as_view(),
+    #     name='update'
+    # ),
+
+    path(
         route='login/',
         view=views.LoginView.as_view(),
         name='login',
     ),
+
+    path(
+        route='signup',
+        view=views.SignUp.as_view(),
+        name='signup',
+    )
 ]

@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head_content %}
+<link media="(min-width: 1440px)" rel="stylesheet" href="{% static 'css/computer/forms.css' %}">
+<link rel="stylesheet" href="{% static 'css/cellphone/forms.css' %}">
+{% endblock %}
+
+{% block container %}
+    <div class="form-container form-signup-container">
+        <form action="{% url 'users:signup' %}" method="post" class="form form-signup">
+            {% csrf_token %}
+
+            {% for error in form.non_field_errors %}
+            <div >
+                <p>{{ error }}</p>
+            </div>
+            {% endfor %}
+            
+            <label for="username" class="field 
+            {% if  form.username.errors %}
+            field-error
+            {% endif %}">
+                <span>Username</span>
+                <input type="text" id="username" name="username"
+                {% if form.errors  %}
+                value="{{ form.username.value }}"
+                {% endif %}>
+
+                {% for error in  form.username.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </label>
+
+            <label for="email" class="field 
+            {% if  form.email.errors%}
+                field-error
+            {% endif %}">
+                <span>Email</span>
+                <input type="text" id="email" name="email"
+                {% if form.errors  %}
+                value="{{ form.email.value }}"
+                {% endif %}>
+
+                {% for error in form.email.errors %}
+                    <p>{{ error }}</p>    
+                {% endfor %}
+            </label>
+
+            <label for="first_name" class="field
+            {% if  form.first_name.errors %}
+                field-error
+            {% endif %}">
+                <span>First name</span>
+                <input type="text" id="first_name" name="first_name"
+                {% if form.errors  %}
+                value="{{ form.first_name.value }}"
+                {% endif %}>
+                
+                {% for error in form.email.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </label>
+
+            <label for="last_name" class="field
+            {% if  form.last_name.errors%}
+                error
+            {% endif %}">
+                <span>Last name</span>
+                <input type="text" id="last_name" name="last_name"
+                {% if form.errors  %}
+                value="{{ form.last_name.value }}"
+                {% endif %}>
+                
+                {% for error in form.last_name.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </label>
+
+
+            <label for="password" class="field 
+            {% if  form.password.errors %}
+                field-error
+            {% endif %}">
+                <span>Password</span>
+                <input type="password" id="password" name="password"
+                {% if form.errors  %}
+                value="{{ form.password.value }}"
+                {% endif %}>
+
+                {% for error in form.password.errors %}
+                    <p>{{ errors }}</p>
+                {% endfor %}
+            </label>
+
+            <label for="password_confirmation" class="field
+            {% if form.password_confirmation.errors %}
+                field-error
+            {% endif %}">
+                <span>Password confirmation</span>
+                <input type="password" id="password_confirmation" name="password_confirmation"
+                {% if form.errors  %}
+                value="{{ form.password_confirmation.value }}"
+                {% endif %}>
+                {% for error in form.password.errors %}
+                    <p>{{ errors }}</p>
+                {% endfor %}
+            </label>
+            <div class="submit-button">
+                <button>Submit</button>
+            </div>
+        </form>
+    </div>    
+{% endblock %}

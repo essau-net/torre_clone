@@ -7,22 +7,38 @@
 {% endblock %}
 
 {% block container %}
-    <div class="form">
-        <form action=""  class="form-login-container">
+    <div class="form-container form-login-container">
+        <form action="{% url 'users:login' %}" method="post"  class="form form-login">
             {% csrf_token  %}
-    
-            <label for="username" class="field username-container">
+            
+            {% for error in form.non_field_errors %}
+            <div >
+                <p>{{ error }}</p>
+            </div>
+            {% endfor %}
+
+            <label for="username" class="field username-container
+            {% if form.username.errors  %}
+                
+            {% endif %}">
                 <span class="username-container__element">Username</span>
-                <input type="text" id="username" class="username-container__element">
+                <input type="text" id="username" name="username" class="username-container__element"
+                {% if form.username.errors %}
+                    value="{{ form.username.value }}"
+                {% endif %}
+                    >
             </label>
     
             <label for="password" class="field password-container">
                 <span class="password-container__element">Password</span>
-                <input type="password" id="password" class="password-container__element">
+                <input type="password" id="password" name="password" class="password-container__element">
             </label>
-            <button>Submit</button>
+            <div class="submit-button">
+                <button>Submit</button>
+            </div>
+
             <p>
-                You haven't created an account yet. <a href="">Sign up</a>
+                You haven't created an account yet. <a href="{% url 'users:signup' %}">Sign up</a>
             </p>
         </form>
     </div>

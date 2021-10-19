@@ -1,5 +1,5 @@
 #utilities
-from typing import Dict, Any, Tuple, List
+from typing import Dict, Any, Tuple, List, Union
 from django.db.models import Model
 import warnings
 
@@ -19,9 +19,18 @@ class TablesManagers:
         """model's getter"""
         return self.__model
 
-    def data_exists(self, data: Dict[str, str]) -> bool:
+    def data_exists(self, data: Dict[str, Union[str, int]]) -> bool:
         if data is Dict:
-            self.model.objects.filter(**data)
+            exists = self.model.objects.filter(**data)
+
+            if exists:
+                return True
+            
+            else:
+                return False
+        
+        else:
+            warnings.warn("Data must be a dict")
     
     def get_data(self, sql_query: str, id: str='%') ->Tuple[List[str], ...] :
         pass
