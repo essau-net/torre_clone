@@ -1,1 +1,62 @@
 {% extends "base.html" %}
+
+{% load static %}
+{% block head_content %}
+    <link media="(min-width:540px)" rel="stylesheet" href="{% static 'css/cellphone/account.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/cellphone/account.css' %}" type="text/css">
+{% endblock %}
+
+{% block container %}
+    <section class="account-container">
+        <header class="header-account">
+            <p>Your account</p>
+        </header>
+        <section class="information-container">
+
+            <article class="information">
+                <span>Your picture </span>
+                <picture class="image-container">
+                    {% if user.image_perfil %}
+                        <img id="perfil-image" src="{% static user.image_perfil %}" alt="Perfil image">
+                    {% else %}
+                        <img id="perfil-image" src="{% static 'media/default-profile.png' %}" alt="Default perfil image">
+                    {% endif %}
+                </picture>
+            </article>
+
+            <article class="information">
+                <span>Your full name</span>
+                <span> {{user.first_name }} {{ user.last_name }} </span>
+            </article>
+
+            <article class="information">
+                <span>Your email</span>
+                <span>{{ user.email }}</span>
+            </article>
+
+            <article class="information">
+                <span>Your username</span>
+                <span>{{ user }}</span>
+            </article>
+
+            <article class="information">
+                <span>Your role or professional headline</span>
+                <span> {{ user.professional_role }} </span>
+            </article>
+
+            <article class="information">
+                <span>Your phone number</span>
+                <span>{{ user.cellphone_number }}</span>
+            </article>
+
+            <article class="information">
+                <span>Your language</span>
+                <span>{{ user.language }}</span>
+            </article>
+
+            <article class="edit-button">
+                <a href="{% url 'users:update' %}">Edit</a>
+            </article>
+        </section>
+    </section>
+{% endblock %}

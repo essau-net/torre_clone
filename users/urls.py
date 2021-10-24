@@ -2,24 +2,12 @@
 #Utilities
 from typing import List, Any
 #Django
-from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
 #Views
 from users import views
 
-urlpatterns: List[Any] = [
-    path(
-        route='user/',
-        view=views.AccountInformation.as_view(),
-        name='information'
-    ),
-    
-    # path(
-    #     route='/user/update',
-    #     view=views.UpdateView.as_view(),
-    #     name='update'
-    # ),
+urlpatterns: List[Any] = [ 
 
     path(
         route='login/',
@@ -28,8 +16,26 @@ urlpatterns: List[Any] = [
     ),
 
     path(
+        route='logut/',
+        view=views.LogoutView.as_view(),
+        name='logut',
+    ),
+
+    path(
         route='signup',
         view=views.SignUp.as_view(),
         name='signup',
-    )
+    ),
+
+    path(
+        route='user/',
+        view=views.AccountInformation.as_view(),
+        name='information',
+    ),
+
+    path(
+        route='user/update',
+        view=views.UpdateAccountView.as_view(),
+        name='update',
+    ),
 ]

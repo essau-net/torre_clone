@@ -24,5 +24,4 @@ urlpatterns: List[Any]= [
     path('admin/', admin.site.urls),
 
     path('', include(('users.urls', 'users'), namespace='user')),
-    path('genome/', include(('genomes.urls', 'genomes'), namespace='genome'))
 ]

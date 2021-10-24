@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import List, Dict, Tuple, Any, Union, Optional
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR: Path = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -42,14 +42,10 @@ DJANGO_APPS: Tuple[str, ...] = (
 )
 
 LOCAL_APPS: Tuple[str, ...]= (
-    'awards',
-    'genomes',
-    'meta_data',
-    'skills',
     'users',
 )
 
-INSTALLED_APPS = list(DJANGO_APPS + LOCAL_APPS)
+INSTALLED_APPS: List = list(DJANGO_APPS + LOCAL_APPS)
 
 MIDDLEWARE: List[str] = [
     'django.middleware.security.SecurityMiddleware',
@@ -142,7 +138,11 @@ STATIC_FINDERS: List[str] = [
 
 STATICFILES_DIRS = (
     'static',
+    'media'
 )
+
+MEDIA_ROOT: Path = BASE_DIR/'media/'
+MEDIA_URL: str = '/media/'
 
 LOGIN_URL: str = 'users:login'
 LOGIN_REDIRECT_URL:  str = '/user'
@@ -153,4 +153,4 @@ LOGOUT_REDIRECT_URL: str = LOGIN_URL
 
 DEFAULT_AUTO_FIELD: str = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL: str = 'users.User'

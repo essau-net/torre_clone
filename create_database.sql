@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL UNIQUE,
     professional_role VARCHAR(255),
     cellphone_number  VARCHAR(13) UNIQUE,
+    image_perfil VARCHAR(255),
     language VARCHAR(2),
     is_staff BOOLEAN NOT NULL DEFAULT FALSE,
     is_active BOOLEAN NOT NULL DEFAULT TRUE,
@@ -21,63 +22,4 @@ CREATE TABLE IF NOT EXISTS users (
     date_joined TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
         ON UPDATE CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS skills (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    skill_name VARCHAR(255) NOT NULL UNIQUE
-);
-
-CREATE TABLE IF NOT EXISTS awards (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    award_name VARCHAR(255) NOT NULL,
-    is_current BOOLEAN NOT NULL DEFAULT FALSE,
-    started_at DATE NOT NULL,
-    finished_at DATE
-);
-
-CREATE TABLE IF NOT EXISTS genomes(
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    user_id BIGINT  NOT NULL,
-    about VARCHAR(255),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-        ON UPDATE RESTRICT
-        ON DELETE  RESTRICT
-);
-
-CREATE TABLE IF NOT EXISTS skills_genoms (
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    skill_id BIGINT NOT NULL,
-    genome_id BIGINT NOT NULL,
-    skill_level  ENUM('Junior', 'Mid-level', 'Senior', 'Influencer') NOT NULL,
-    FOREIGN KEY (skill_id) REFERENCES skills(id)
-        ON UPDATE RESTRICT
-        ON DELETE RESTRICT,
-    FOREIGN KEY (genome_id) REFERENCES genomes(id)
-        ON UPDATE RESTRICT
-        ON DELETE RESTRICT
-);
-
-CREATE TABLE IF NOT EXISTS genomes_awards(
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    genome_id BIGINT  NOT NULL,
-    award_id BIGINT NOT NULL,
-    FOREIGN KEY (genome_id) REFERENCES genomes(id)
-        ON UPDATE RESTRICT
-        ON DELETE  RESTRICT,
-    FOREIGN KEY (award_id) REFERENCES awards(id)
-        ON UPDATE RESTRICT
-        ON DELETE  RESTRICT
-);
-
-CREATE TABLE IF NOT EXISTS skills_awards(
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    skill_id BIGINT  NOT NULL,
-    award_id BIGINT NOT NULL,
-    FOREIGN KEY (skill_id) REFERENCES skills(id)
-        ON UPDATE RESTRICT
-        ON DELETE  RESTRICT,
-    FOREIGN KEY (award_id) REFERENCES awards(id)
-        ON UPDATE RESTRICT
-        ON DELETE  RESTRICT
 );

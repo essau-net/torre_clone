@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block head_content %}
+    <link rel="stylesheet" href="{% static 'css/cellphone/forms.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/cellphone/account.css' %}" type="text/css">
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{% static 'js/upload-image.js' %}"></script>
+{% endblock scripts %}
+    
+
+{% block container %}
+    <section class="account-container">
+        <header class="header-account">
+            <p>Your account</p>
+        </header>
+        <form action="{% url 'users:update' %}" method="post" enctype="multipart/form-data" class="information-container form form-update" >
+            {% csrf_token %}
+
+            
+            {% for error in form.non_field_errors  %}
+                    <div class="field-error">
+                        <p>{{ error }}</p>
+                    </div>
+            {% endfor %}
+                
+
+            <label for="input-upload-image" id="image" class="information
+            {% if  form.image_perfil.errors %}
+                field-error
+            {% endif %}">
+                <span>Your picture </span>
+                <picture class="image-container">
+                    {% if user.image_perfil %}
+                        <img id="perfil-image" alt="Perfil image" src="{% static user.image_perfil %}">
+                    {% else %}
+                        <img id="perfil-image"  alt="Default perfil image"
+                        {% if  form.errors %}
+                            src="{{form.image_perfil.value}}"
+                        {% else %}
+                            src="{% static 'media/default-profile.png' %}"
+                        {% endif %}
+                        >
+                        <p>Change</p>
+                    {% endif %}
+                </picture>
+                <input type="file" name="image_perfil" id="input-upload-image"
+                    {% if form.errors %}
+                        value="{{form.image_perfil.value}}"
+                    {% endif %}
+                >
+
+                {% for error in form.image_perfil.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}                    
+
+            </label>
+
+            <label for="firs_name"  class="information field 
+            {% if  form.first_name.errors%}
+                field-error
+            {% endif %}">
+                <span>Your first name</span>
+                <input type="text" id="first_name" name="first_name" 
+                {% if form.errors %}
+                    value="{{form.first_name.value}}"
+                {% else %}                
+                    value="{{ user.first_name }}"
+                {% endif %}
+                > 
+                {% for error in form.first_name.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}    
+            </label>
+
+            <label for="last_name" class="information field 
+            {% if  form.last_name.errors %}
+                field-error
+            {% endif %}">
+                <span>Your last name</span>
+                <input type="text" id="last_name" name="last_name" 
+                {% if form.errors %}
+                    value="{{form.last_name.value}}"
+                {% else %}                
+                    value="{{ user.last_name }} "
+                {% endif %}
+                >
+                {% for error in form.last_name.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}    
+            </label>
+
+            <label for="email" class="information field
+            {% if form.username.errors %}
+                field-error
+            {% endif %}">
+                <span>Your email</span>
+                <input type="text" id="email" name="email" 
+                {% if form.errors %}
+                    value="{{form.email.value}}"
+                {% else %}                
+                    value="{{ user.email }}"
+                {% endif %}
+                >
+                {% for error in form.username.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}    
+            </label>
+
+            <label for="username" class="information field
+            {% if form.username.errors %}
+                field-error
+            {% endif %}">
+                <span>Your username</span>
+                <input type="text" id="username" name="username" 
+                {% if form.errors %}
+                    value="{{form.username.value}}"
+                {% else %}                
+                    value="{{ user }}"
+                {% endif %}
+                >
+                {% for error in form.username.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}    
+            </label>
+
+            <label for="professional_role" class="information field
+            {% if form.professional_role.errors %}
+                field-error
+            {% endif %}">
+                <span>Your role or professional headline</span>
+                <input type="text" id="profesiional_role" name="professional_role" 
+                {% if form.errors %}
+                    value="{{form.professional_roles.value}}"
+                {% else %}                
+                    value="{{ user.professional_role }} "
+                {% endif %}
+                >
+                {% for error in form.profesiional_role.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}    
+            </label>
+
+            <label id="cellphone_number" class="information field
+            {% if  form.cellphone_number %}
+                field-error
+            {% endif %}">
+                <span>Your phone number</span>
+                <input type="text" id="cellphone_number" name="cellphone_number" 
+                {% if form.errors %}
+                    value="{{form.cellphone_number.value}}"
+                {% else %}                
+                value="{{ user.cellphone_number }}">
+                {% endif %}
+                {% for error in form.cellphone_number.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}    
+            </label>
+
+            <label for="language" class="information field
+            {% if  form.language.errors %}
+                field-error
+            {% endif %}">
+                <span>Your language</span>
+                <input type="text" id="language" name="language" 
+                {% if form.errors %}
+                    value="{{form.language.value}}"
+                {% else %}                
+                    value="{{ user.language }}"
+                {% endif %}
+                >
+                {% for error in form.language.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}    
+            </label>
+
+            <div class="submit-button">
+                <button>Submit</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}

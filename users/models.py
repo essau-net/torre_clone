@@ -1,5 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import BigAutoField, CharField, IntegerField, DateTimeField
+from django.db.models import BigAutoField, CharField, IntegerField, DateTimeField, ImageField
 
 # Create your models here.
 
@@ -12,6 +12,7 @@ class User(AbstractUser):
     email = CharField(unique=True, max_length=255)
     professional_role = CharField(max_length=255, blank=True, null=True)
     cellphone_number = CharField(unique=True, max_length=13, blank=True, null=True)
+    image_perfil = CharField(blank=True, null=True, max_length=255)
     language = CharField(max_length=2, blank=True, null=True)
     is_staff = IntegerField(default=False)
     is_active = IntegerField(default=True)

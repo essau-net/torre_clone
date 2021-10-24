@@ -1,0 +1,85 @@
+#perfil-image{
+    border-radius: 120px;
+}
+
+.account-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-container,
+.header-account,
+.information-container {
+    width: 100%;
+    
+}
+
+.edit-button {
+    display: flex;
+    justify-content: flex-end;  
+    width: 75%;
+    margin-bottom: 25px;
+}
+
+.edit-button a{
+    background-color: var(--third-complementary-color);
+    color: var(--primary-background-color);
+    padding: 7px 37px;
+}
+
+.edit-button a:hover {
+    cursor: pointer;
+}
+
+.header-account,
+.information-container {
+    background-color: var(--second-background-color);
+    color: var(--second-complementary-color);
+}
+
+.header-account {
+    border-top: var(--second-complementary-color) .5px solid;
+    
+}
+
+.header-account p {
+    padding: 9px 16px;
+    font-size: 3rem;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    
+}
+.image-container img {
+    width: 73%;
+}
+
+.information-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 540px;    
+    padding-top: 20px;
+}
+
+.information-container .information {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    width: 90%;
+}
+
+.information span:first-child{
+    font-size: 1.6rem;
+    margin-bottom: 3px;
+}
+
+.information span:last-child {
+    font-size: 2rem;
+}
